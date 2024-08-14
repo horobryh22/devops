@@ -1,7 +1,6 @@
-FROM node:20
-WORKDIR /app
-COPY package.json ./
-RUN npm install
-COPY app.js ./
-EXPOSE 3000
-CMD ["node", "app.js"]
+#какой image будем использовать для создания нашего образа
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html
+EXPOSE 80
+# команда внутри контейнера nginx запускает наш образ на 80 порту
+CMD ["nginx", "-g", "daemon off;"]
